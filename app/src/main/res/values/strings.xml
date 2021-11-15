@@ -5,4 +5,9 @@
     <string name="no_guests_messege">No one has currently signed in. Be the first to sign in.</string>
     <string name="sign_in_button_text">Sign In</string>
     <string name="sign_in_at_the_registry">Sign in at the registry</string>
+    <string name="full_name">Full Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email">Email</string>
+    <string name="emergency_contact_number">Emergency Contact Number</string>
+    <string name="emegency_contact_name">Emegency Contact Name</string>
 </resources>

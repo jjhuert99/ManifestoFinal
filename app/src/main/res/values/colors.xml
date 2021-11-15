@@ -8,4 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="manifesto_yellow">#eea86c</color>
+    <color name="error_blue">#A5ADE8</color>
+    <color name="pass_blue">#3845ab</color>
+
 </resources>
