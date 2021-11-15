@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ManifestoFinal</string>
+    <string name="big_m">M</string>
+    <string name="manifesto_title">Manifesto</string>
+    <string name="no_guests_messege">No one has currently signed in. Be the first to sign in.</string>
+    <string name="sign_in_button_text">Sign In</string>
+    <string name="sign_in_at_the_registry">Sign in at the registry</string>
 </resources>
