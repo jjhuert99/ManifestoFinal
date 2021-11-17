@@ -10,5 +10,6 @@
     <color name="manifesto_yellow">#eea86c</color>
     <color name="error_blue">#A5ADE8</color>
     <color name="pass_blue">#3845ab</color>
+    <color name="red">#E41405</color>
 
 </resources>
