@@ -37,7 +37,7 @@ class HomeScreenFragment : Fragment() {
                 viewModel.pencilClick(guestID)
             } else {
                 MaterialAlertDialogBuilder(this.requireContext())
-                    .setMessage("Continue to delete {${guestID[0]}}")
+                    .setMessage("Continue to delete ${guestID[1]}?")
                     .setNegativeButton("Cancel") { dialog, which ->
                     }
                     .setPositiveButton("Continue") { dialog, which ->
@@ -46,7 +46,6 @@ class HomeScreenFragment : Fragment() {
                     .show()
             }
         })
-
 
         binding.guestList.adapter = adapter
         viewModel.navigateToEdit.observe(viewLifecycleOwner, Observer {
@@ -66,9 +65,11 @@ class HomeScreenFragment : Fragment() {
             }
             if (adapter.itemCount <= 0) {
                 binding.homeScreenMessege.visibility = VISIBLE
-                binding.guestsPresentMessege.visibility = GONE
+                binding.guestsPresentMessege.visibility = INVISIBLE
             } else {
                 binding.homeScreenMessege.visibility = GONE
+                binding.guestsPresentMessege.visibility = VISIBLE
+
             }
         })
 

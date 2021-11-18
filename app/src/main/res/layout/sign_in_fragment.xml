@@ -17,6 +17,7 @@
         <TextView
             android:id="@+id/big_m_title"
             android:text="@string/big_m"
+            android:paddingTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -62,7 +63,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
                     android:hint="@string/full_name"
-                    app:boxStrokeColor="@color/black"
+                    app:hintTextColor="@color/manifesto_yellow"
+                    app:boxStrokeColor="@color/manifesto_yellow"
                     android:paddingHorizontal="10dp"
                     app:helperTextTextColor="@color/red"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +73,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/full_name_field2"
-                        app:boxStrokeColor="@color/black"
+                        android:textCursorDrawable="@null"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -83,6 +85,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
                     android:hint="@string/phone_number"
+                    app:hintTextColor="@color/manifesto_yellow"
+                    app:boxStrokeColor="@color/manifesto_yellow"
                     android:paddingHorizontal="10dp"
                     app:helperTextTextColor="@color/red"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -91,6 +95,8 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/phone_field2"
+                        android:textCursorDrawable="@null"
+                        android:inputType="phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -102,6 +108,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
                     android:hint="@string/email"
+                    app:hintTextColor="@color/manifesto_yellow"
+                    app:boxStrokeColor="@color/manifesto_yellow"
                     app:helperTextTextColor="@color/red"
                     android:paddingHorizontal="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -110,6 +118,8 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/email_field2"
+                        android:inputType="textEmailAddress"
+                        android:textCursorDrawable="@null"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -117,11 +127,12 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/emergency_phone_field"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:boxStrokeColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
                     android:hint="@string/emergency_contact_number"
+                    app:hintTextColor="@color/manifesto_yellow"
+                    app:boxStrokeColor="@color/manifesto_yellow"
                     app:helperTextTextColor="@color/red"
                     android:paddingHorizontal="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -130,7 +141,8 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/emergency_phone_field2"
-                        app:boxStrokeColor="@color/black"
+                        android:textCursorDrawable="@null"
+                        android:inputType="phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -142,8 +154,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
                     android:hint="@string/emegency_contact_name"
+                    app:hintTextColor="@color/manifesto_yellow"
                     android:paddingHorizontal="10dp"
-                    app:boxStrokeColor="@color/black"
+                    app:boxStrokeColor="@color/manifesto_yellow"
                     app:helperTextTextColor="@color/red"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -151,6 +164,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/emergency_name_field2"
+                        android:textCursorDrawable="@null"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
