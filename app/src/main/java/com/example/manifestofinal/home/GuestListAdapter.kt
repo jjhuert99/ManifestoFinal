@@ -49,7 +49,7 @@ class GuestStayDiffCallBack: DiffUtil.ItemCallback<Guest>(){
     }
 }
 
-class GuestListener(val clickListener:(guest: Long, tag: Boolean, guestName: String) -> Unit){
-    fun onClick(guest: Guest, tag: Boolean) = clickListener(guest.guestID, tag, guest.guestName)
+class GuestListener(val clickListener:(valuess: Array<String>, tag: Boolean) -> Unit){
+    fun onClick(guest: Guest, tag: Boolean) = clickListener(arrayOf(guest.guestID.toString(), guest.guestName, guest.guestPhone, guest.guestEmail, guest.guestPhone, guest.guestEMname), tag)
 }
 

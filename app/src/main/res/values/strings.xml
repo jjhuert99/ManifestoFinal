@@ -12,4 +12,7 @@
     <string name="emegency_contact_name">Emegency Contact Name</string>
     <string name="save_and_sign">Save and Sign</string>
     <string name="image_of_city_in_background">image of city in background</string>
+    <string name="error_name">Must be 2–12 characters long and have no special characters</string>
+    <string name="error_phone">Must be 10 digit number</string>
+    <string name="error_email">Invalid email. Try again.</string>
 </resources>

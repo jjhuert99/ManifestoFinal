@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="m_splash_screen">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/modern_regular</item>
+        <item name="android:textColor">@color/manifesto_yellow</item>
+        <item name="android:textSize">84sp</item>
+        <item name="android:paddingTop">20dp</item>
+    </style>
+
+    <style name="manifesto_title_splash_screen">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">44sp</item>
+        <item name="android:paddingTop">1dp</item>
+    </style>
 
     <style name="big_m_home">
         <item name="android:layout_width">wrap_content</item>
@@ -37,10 +54,9 @@
     <style name="sign_in_button_yellow">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:backgroundTint">@color/manifesto_yellow</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:layout_marginBottom">40dp</item>
-        <item name="android:paddingHorizontal">50dp</item>
+        <item name="android:paddingHorizontal">60dp</item>
     </style>
 
     <style name="white_box">
@@ -48,7 +64,6 @@
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_marginHorizontal">25dp</item>
         <item name="android:layout_marginTop">10dp</item>
-        <item name="android:background">@color/white</item>
     </style>
 
     <style name="save_and_sign_button">
@@ -56,7 +71,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_marginVertical">10dp</item>
-        <item name="android:paddingHorizontal">20dp</item>
+        <item name="android:paddingHorizontal">30dp</item>
     </style>
 
     <style name="guest_name_rv">
@@ -74,4 +89,5 @@
         <item name="android:layout_height">50dp</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
+
 </resources>

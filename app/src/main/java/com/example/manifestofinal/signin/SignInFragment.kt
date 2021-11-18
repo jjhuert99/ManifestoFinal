@@ -1,13 +1,13 @@
 package com.example.manifestofinal.signin
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.graphics.red
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.manifestofinal.R
 import com.example.manifestofinal.databinding.SignInFragmentBinding
@@ -21,53 +21,67 @@ class SignInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = SignInFragmentBinding.inflate(inflater)
-        val arguments = SignInFragmentArgs.fromBundle(requireArguments()).passedKey
+        var arguments = SignInFragmentArgs.fromBundle(requireArguments()).passedKey
+        if(arguments == null)
+        {
+            arguments = arrayOf("x") }
+        else{
+            viewModel.getkey(arguments[0])
+            if(arguments[0] != "x") {
+                binding.fullNameField2.setText(arguments[1])
+                binding.phoneField2.setText(arguments[2])
+                binding.emailField2.setText(arguments[3])
+                binding.emergencyPhoneField2.setText(arguments[4])
+                binding.emergencyNameField2.setText(arguments[5])
+            }
+        }
         binding.lifecycleOwner = this
         binding.viewModelSignIn = viewModel
-        viewModel.getkey(arguments)
-        viewModel.fillFields()
+
         binding.backArrow.setOnClickListener{
             findNavController().popBackStack()
         }
-        /*val herro = "HELLOOO"
 
-        binding.editTextTextEmailAddress.setText(herro)
-        binding.fullNameField2.setText(herro)*/
-
-        //viewModel.name.value = "HELOOOO"
         binding.saveAndSignButton.setOnClickListener {
-            if(!viewModel.verifyName()){
-                binding.fullNameField.helperText = "Must be 2-12 characters long and have no special characters"
+            if(!viewModel.verifyName(binding.fullNameField2.text.toString())){
+                binding.fullNameField.helperText = getString(R.string.error_name)
             }else{
                 binding.fullNameField.isHelperTextEnabled = false
             }
-            if(!viewModel.verifyPhone()){
-                binding.phoneField.helperText = "Must be 10 digit number"
+            if(!viewModel.verifyPhone(binding.phoneField2.text.toString())){
+                binding.phoneField.helperText = getString(R.string.error_phone)
             }else{
                 binding.phoneField.isHelperTextEnabled = false
             }
-            if(!viewModel.verifyEmail()){
-                binding.emailField.helperText = "Invalid email. Try again."
+            if(!viewModel.verifyEmail(binding.emailField2.text.toString())){
+                binding.emailField.helperText = getString(R.string.error_email)
             }else{
                 binding.emailField.isHelperTextEnabled = false
             }
-            if(!viewModel.verifyEmPhone()){
-                binding.emergencyPhoneField.helperText = "Must be 10 digit number"
+            if(!viewModel.verifyEmPhone(binding.emergencyPhoneField2.text.toString())){
+                binding.emergencyPhoneField.helperText = getString(R.string.error_phone)
             }else{
                 binding.emergencyPhoneField.isHelperTextEnabled = false
             }
-            if(!viewModel.verifyEmName()){
-                binding.emergencyNameField.helperText = "Must be 2-12 characters long and have no special characters"
+            if(!viewModel.verifyEmName(binding.emergencyNameField2.text.toString())){
+                binding.emergencyNameField.helperText = getString(R.string.error_name)
             }else{
                 binding.emergencyNameField.isHelperTextEnabled = false
             }
-            if(viewModel.verifyName() && viewModel.verifyPhone() && viewModel.verifyEmail() && viewModel.verifyEmName()){
-                viewModel.onSaveGuest()
+            if(viewModel.verifyName(binding.fullNameField2.text.toString()) && viewModel.verifyPhone(binding.phoneField2.text.toString())
+                && viewModel.verifyEmail(binding.emailField2.text.toString()) && viewModel.verifyEmName(binding.emergencyNameField2.text.toString())
+                && viewModel.verifyEmPhone(binding.emergencyPhoneField2.text.toString())){
+                        viewModel.onSaveGuest2(
+                            binding.fullNameField2.text.toString(),
+                            binding.phoneField2.text.toString(),
+                            binding.emailField2.text.toString(),
+                            binding.emergencyPhoneField2.text.toString(),
+                            binding.emergencyNameField2.text.toString()
+                        )
                 findNavController().navigate(R.id.action_signInFragment_to_homeScreenFragment)
             }
         }
 
         return binding.root
     }
-
 }

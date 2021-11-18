@@ -1,12 +1,10 @@
 package com.example.manifestofinal.home
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -33,17 +31,17 @@ class HomeScreenFragment : Fragment() {
             view.findNavController().navigate(R.id.action_homeScreenFragment_to_signInFragment)
         }
 
-        val adapter = GuestListAdapter(GuestListener { guestID, theTag, guestName ->
-            if(theTag == true){
+        val adapter = GuestListAdapter(GuestListener { guestID, theTag ->
+            if (theTag == true) {
+                viewModel.justNav()
                 viewModel.pencilClick(guestID)
-            }
-            else{
+            } else {
                 MaterialAlertDialogBuilder(this.requireContext())
-                    .setMessage("Continue to delete $guestName")
+                    .setMessage("Continue to delete {${guestID[0]}}")
                     .setNegativeButton("Cancel") { dialog, which ->
                     }
                     .setPositiveButton("Continue") { dialog, which ->
-                        viewModel.onDeleteGuest(guestID)
+                        viewModel.onDeleteGuest(guestID[0].toLong())
                     }
                     .show()
             }
@@ -51,15 +49,26 @@ class HomeScreenFragment : Fragment() {
 
 
         binding.guestList.adapter = adapter
-        viewModel.navigateToEdit.observe(viewLifecycleOwner, Observer{
-            it?.let{
-                this.findNavController().navigate(HomeScreenFragmentDirections.actionHomeScreenFragmentToSignInFragment(it))
+        viewModel.navigateToEdit.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if(viewModel.navYet.value == true){
+                this.findNavController().navigate(
+                    HomeScreenFragmentDirections.actionHomeScreenFragmentToSignInFragment(it)
+                )
+            }
+            viewModel.doneNav()
             }
         })
 
-        viewModel.guests.observe(viewLifecycleOwner, Observer{
-            it?.let{
+        viewModel.guests.observe(viewLifecycleOwner, Observer {
+            it?.let {
                 adapter.submitList(it)
+            }
+            if (adapter.itemCount <= 0) {
+                binding.homeScreenMessege.visibility = VISIBLE
+                binding.guestsPresentMessege.visibility = GONE
+            } else {
+                binding.homeScreenMessege.visibility = GONE
             }
         })
 

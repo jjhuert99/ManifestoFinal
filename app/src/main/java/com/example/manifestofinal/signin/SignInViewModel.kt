@@ -15,7 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SignInViewModel @Inject constructor(
     private val app: Application,
-    private val GuestDao: GuestDao
+    private val GuestDao: GuestDao,
+    private val dispatcher: Dispatchers
 ) : ViewModel() {
     private var viewModelJob = Job()
 
@@ -24,37 +25,17 @@ class SignInViewModel @Inject constructor(
         viewModelJob.cancel()
     }
 
-    var passedKey: Long = 1L
-    fun getkey(theKey: Long) {
-        passedKey = theKey
+    var passK: String = "x"
+    fun getkey(theKey: String) {
+        passK = theKey
     }
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     var guest = MutableLiveData<Guest?>()
+
     private val _navigateToHome = MutableLiveData<Guest>()
     val navigateToHome: LiveData<Guest>
         get() = _navigateToHome
-
-    val name = MutableLiveData<String>()
-    val phone = MutableLiveData<String>()
-    val email = MutableLiveData<String>()
-    val emergencyPhone = MutableLiveData<String>()
-    val emergencyName = MutableLiveData<String>()
-
-    fun fillFields() {
-        uiScope.launch {
-            //not default value 1L, so a real value
-            var newGuest = Guest()
-            newGuest = fetchGuest(passedKey)
-            if (passedKey != 1L) {
-                name.value = newGuest.guestName
-                phone.value = newGuest.guestPhone
-                email.value = newGuest.guestEmail
-                emergencyName.value = newGuest.guestEMname
-                emergencyPhone.value = newGuest.guestEMphone
-            }
-        }
-    }
 
     private val _verify = MutableLiveData<Boolean>()
     val verify: LiveData<Boolean> = _verify
@@ -63,57 +44,36 @@ class SignInViewModel @Inject constructor(
         initializeGuest()
     }
 
-
-    fun verifyName(): Boolean {
-        var name2: String = ""
-        if (!name.value.isNullOrEmpty()) {
-            name2 = name.value.toString()
-        }
-        if (name2.length >= 3 && name2.matches("^[a-zA-Z ]*$".toRegex()) && name2.length <= 12) {
+    fun verifyName(text: String): Boolean {
+        if (text.length >= 3 && text.matches("^[a-zA-Z ]*$".toRegex()) && text.length <= 12) {
             return true
         }
         return false
     }
 
-    fun verifyPhone(): Boolean {
-        var phone2: String = ""
-        if (!phone.value.isNullOrEmpty()) {
-            phone2 = phone.value.toString()
-        }
-        if (Patterns.PHONE.matcher(phone2).matches()) {
+    fun verifyPhone(text: String): Boolean {
+        if (Patterns.PHONE.matcher(text).matches()) {
             return true
         }
         return false
     }
 
-    fun verifyEmail(): Boolean {
-        var email2: String = ""
-        if (!email.value.isNullOrEmpty()) {
-            email2 = email.value.toString()
-        }
-        if (Patterns.EMAIL_ADDRESS.matcher(email2).matches()) {
+    fun verifyEmail(text: String): Boolean {
+        if (Patterns.EMAIL_ADDRESS.matcher(text).matches()) {
             return true
         }
         return false
     }
 
-    fun verifyEmPhone(): Boolean {
-        var emP: String = ""
-        if (!emergencyPhone.value.isNullOrEmpty()) {
-            emP = emergencyPhone.value.toString()
-        }
-        if (Patterns.PHONE.matcher(emP).matches()) {
+    fun verifyEmPhone(text: String): Boolean {
+        if (Patterns.PHONE.matcher(text).matches()) {
             return true
         }
         return false
     }
 
-    fun verifyEmName(): Boolean {
-        var emN: String = ""
-        if (!emergencyName.value.isNullOrEmpty()) {
-            emN = emergencyName.value.toString()
-        }
-        if (emN.length >= 3 && emN.matches("^[a-zA-Z ]*$".toRegex()) && emN.length <= 12) {
+    fun verifyEmName(text: String): Boolean {
+        if (text.length >= 3 && text.matches("^[a-zA-Z ]*$".toRegex()) && text.length <= 12) {
             return true
         }
         return false
@@ -131,32 +91,31 @@ class SignInViewModel @Inject constructor(
             guest
         }
     }
-
-    fun onSaveGuest() {
+    fun onSaveGuest2(name2: String, phone2: String,email2: String, emergPhone: String, emergName: String) {
         uiScope.launch {
-            if (passedKey != 1L) {
+            if(passK != "x") {
                 val newGuest = Guest(
-                    guestName = name.value.toString(),
-                    guestPhone = phone.value.toString(),
-                    guestEmail = email.value.toString(),
-                    guestEMphone = emergencyPhone.value.toString(),
-                    guestEMname = emergencyName.value.toString()
+                    guestID = passK.toLong(),
+                    guestName = name2,
+                    guestPhone = phone2,
+                    guestEmail = email2,
+                    guestEMphone = emergPhone,
+                    guestEMname = emergName
                 )
                 update(newGuest)
-                guest.value = getGuestFromDatabase()
-                _navigateToHome.value = guest.value
-            } else {
+            }
+             else {
                 val newGuest = Guest(
-                    guestName = name.value.toString(),
-                    guestPhone = phone.value.toString(),
-                    guestEmail = email.value.toString(),
-                    guestEMphone = emergencyPhone.value.toString(),
-                    guestEMname = emergencyName.value.toString()
+                    guestName = name2,
+                    guestPhone = phone2,
+                    guestEmail = email2,
+                    guestEMphone = emergPhone,
+                    guestEMname = emergName
                 )
                 insert(newGuest)
-                guest.value = getGuestFromDatabase()
-                _navigateToHome.value = guest.value
             }
+            guest.value = getGuestFromDatabase()
+            _navigateToHome.value = guest.value
         }
     }
 
@@ -169,13 +128,6 @@ class SignInViewModel @Inject constructor(
     private suspend fun update(guest: Guest) {
         withContext(Dispatchers.IO) {
             GuestDao.update(guest)
-        }
-    }
-
-    private suspend fun fetchGuest(passedKey: Long): Guest {
-        return withContext(Dispatchers.IO) {
-            val aGuest = GuestDao.get(passedKey)
-            aGuest
         }
     }
 
