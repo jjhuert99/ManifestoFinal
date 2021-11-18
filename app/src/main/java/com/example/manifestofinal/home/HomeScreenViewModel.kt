@@ -1,6 +1,7 @@
 package com.example.manifestofinal.home
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,9 +22,17 @@ class HomeScreenViewModel @Inject constructor(
     var guest = MutableLiveData<Guest?>()
     var guests = GuestDao.getAllGuest()
 
+    private val _navYet = MutableLiveData<Boolean>()
+    val navYet: LiveData<Boolean> = _navYet
+
+    fun doneNav(){
+        _navYet.value = false
+    }
+    fun justNav(){
+        _navYet.value = true
+    }
     init {
         initializeGuest()
-        //updateList()
     }
     private fun initializeGuest(){
         viewModelScope.launch {
@@ -37,11 +46,11 @@ class HomeScreenViewModel @Inject constructor(
 
         }
     }
-    private val _navigateToEdit = MutableLiveData<Long>()
+    private val _navigateToEdit = MutableLiveData<Array<String>>()
     val navigateToEdit
         get() = _navigateToEdit
 
-    fun pencilClick(id: Long){
+    fun pencilClick(id: Array<String>){
         _navigateToEdit.value = id
     }
 

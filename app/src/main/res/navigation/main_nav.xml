@@ -21,8 +21,9 @@
         tools:layout="@layout/sign_in_fragment" >
         <argument
             android:name="passedKey"
-            app:argType="long"
-            android:defaultValue="1L"/>
+            app:argType="string[]"
+            app:nullable="true"
+            android:defaultValue="@null"/>
         <action
             android:id="@+id/action_signInFragment_to_homeScreenFragment"
             app:destination="@id/homeScreenFragment" />

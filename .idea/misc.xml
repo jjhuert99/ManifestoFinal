@@ -3,11 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Julio Huerta/AndroidStudioProjects/ManifestoFinal/app/src/main/res/drawable-v24/overview_whitebox_rounded_corners.xml" value="0.2695" />
+        <entry key="..\:/Users/Julio Huerta/AndroidStudioProjects/ManifestoFinal/app/src/main/res/drawable/rounded_home_button.xml" value="0.2695" />
+        <entry key="..\:/Users/Julio Huerta/AndroidStudioProjects/ManifestoFinal/app/src/main/res/drawable/rounded_yellow_button.xml" value="0.2695" />
         <entry key="..\:/Users/Julio Huerta/AndroidStudioProjects/ManifestoFinal/app/src/main/res/font/mirza.xml" value="0.4107692307692308" />
         <entry key="..\:/Users/Julio Huerta/AndroidStudioProjects/ManifestoFinal/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Julio Huerta/AndroidStudioProjects/ManifestoFinal/app/src/main/res/layout/activity_splash_screen.xml" value="0.33" />
         <entry key="..\:/Users/Julio Huerta/AndroidStudioProjects/ManifestoFinal/app/src/main/res/layout/guest_viewholder.xml" value="0.33" />
         <entry key="..\:/Users/Julio Huerta/AndroidStudioProjects/ManifestoFinal/app/src/main/res/layout/home_screen_fragment.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/Julio Huerta/AndroidStudioProjects/ManifestoFinal/app/src/main/res/layout/sign_in_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/Julio Huerta/AndroidStudioProjects/ManifestoFinal/app/src/main/res/layout/sign_in_fragment.xml" value="0.10862619808306709" />
       </map>
     </option>
   </component>
