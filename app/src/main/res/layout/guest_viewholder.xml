@@ -19,6 +19,8 @@
         <TextView
             android:id="@+id/GuestTile"
             app:guestNameMain="@{guest}"
+            tools:text="Guest Name"
+            tools:textColor="@color/black"
             style="@style/guest_name_rv" />
 
         <Button

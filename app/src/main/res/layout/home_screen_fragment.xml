@@ -27,6 +27,7 @@
         <TextView
             android:id="@+id/big_m_title"
             android:text="@string/big_m"
+            android:paddingTop="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -54,8 +55,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             style="@style/sign_in_button_yellow"
-            android:background="@drawable/rounded_yellow_button"
-            android:visibility="visible"/>
+            android:background="@drawable/rounded_yellow_button" />
         <TextView
             android:id="@+id/guests_present_messege"
             android:layout_width="wrap_content"
@@ -65,7 +65,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home_city_backdrop"
-            android:visibility="visible"
+            android:visibility="invisible"
             style="@style/home_screen_messege"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/guestList"
